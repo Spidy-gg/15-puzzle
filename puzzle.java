@@ -2,15 +2,17 @@ import java.lang.Math;
 import java.util.*;
 public class puzzle {
     //finds the blank and counts how many steps it takes to get to the last position and returns if it is even or odd
-    private boolean blankparity(int[] board) {
-        int move = 0;
-        int index = -1;
-
-    
+    public int findBlank(int[] board) {
+           
         for(int i = 0; i < 16; i++) {
             if(board[i] == 16) {
-                index = i;
-                break; } }
+                return i;
+                 } }
+        return -1;
+    }
+    private boolean blankparity(int[] board) {
+        int move = 0;
+        int index = this.findBlank(board);
 
         while(index % 4 != 3) {
             index++;
@@ -21,7 +23,6 @@ public class puzzle {
             move++; };
         return move % 2 == 0;
     }
-
     //counts how many swaps it takes to get the board in order and returns if it is even or odd
     private boolean parity(int[] board) {
         int[] blank = { 1, 2, 3, 4,
@@ -64,18 +65,40 @@ public class puzzle {
             int temp = (int)(Math.random() * values.size());
             board[16-values.size()] = values.get(temp);
             values.remove(temp);
-
             //System.out.println(debug);
             //debug++;
-
         }
         if (!this.possible(board)) {
             return this.create();
-            
         } else {
-            return board; }
-
-
+            return board; } }
+    private boolean moveLeft(int[] board) {
+        if(this.findBlank(board) % 4 == 0) {
+            return false;
+        }
+        return true;
+    }
+    private boolean moveRight(int[] board) {
+        if((this.findBlank(board) + 1) % 4 == 0) {
+            return false;
+        }
+        return true;
+    }
+    private boolean moveUp(int[] board) {
+        if(this.findBlank(board) <= 3) {
+            return false;
+        }
+        return true;
+    }
+    private boolean moveDown(int[] board) {
+        if(this.findBlank(board) >= 12) {
+            return false;
+        }
+        return true;
+    }
+    public boolean[] canMove(int[] board) {
+        boolean[] move = {this.moveUp(board), this.moveRight(board), this.moveDown(board), this.moveLeft(board)};
+        return move;
     }
 
 }
