@@ -69,8 +69,13 @@ public class puzzle {
             //debug++;
 
         }
+        if (!this.possible(board)) {
+            return this.create();
+            
+        } else {
+            return board; }
 
-        return board;
+
     }
 
 }
