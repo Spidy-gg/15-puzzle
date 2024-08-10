@@ -101,4 +101,49 @@ public class puzzle {
         return move;
     }
 
+    public int[] move(int[] board) {
+        //this.print(board);
+        String moves = "urdl";
+        int blank = this.findBlank(board);
+        //System.out.println(blank);
+        boolean[] possible = this.canMove(board);
+        //board[0]= 16;
+        //this.print(board);
+        System.out.println("What is your next move move up(u), move right(r), move down(d), or move left(l):");
+        Scanner input = new Scanner(System.in);
+        String in = input.next();
+        int index = moves.indexOf(in);
+        System.out.println(possible[index]);
+    
+        if(possible[index]) {
+            switch (in) {
+                case "u": {
+                    board[blank] = board[blank - 4];
+                    board[blank - 4] = 16; 
+                    break;
+                }
+                case "r": {
+                    board[blank] = board[blank + 1];
+                    board[blank + 1] = 16; 
+                    break;
+                }
+                case "d": {
+                    board[blank] = board[blank + 4];
+                    board[blank + 4] = 16; 
+                    break;
+                }
+
+                case "l": {
+                    board[blank] = board[blank - 1];
+                    board[blank - 1] = 16;   
+                    break;
+                }
+            } 
+
+        } 
+
+        input.close();
+        return board;
+    }
+
 }
