@@ -72,25 +72,25 @@ public class puzzle {
             return this.create();
         } else {
             return board; } }
-    private boolean moveLeft(int[] board) {
+    public boolean moveLeft(int[] board) {
         if(this.findBlank(board) % 4 == 0) {
             return false;
         }
         return true;
     }
-    private boolean moveRight(int[] board) {
+    public boolean moveRight(int[] board) {
         if((this.findBlank(board) + 1) % 4 == 0) {
             return false;
         }
         return true;
     }
-    private boolean moveUp(int[] board) {
+    public boolean moveUp(int[] board) {
         if(this.findBlank(board) <= 3) {
             return false;
         }
         return true;
     }
-    private boolean moveDown(int[] board) {
+    public boolean moveDown(int[] board) {
         if(this.findBlank(board) >= 12) {
             return false;
         }
@@ -101,48 +101,33 @@ public class puzzle {
         return move;
     }
 
-    public int[] move(int[] board) {
-        //this.print(board);
-        String moves = "urdl";
+    public int[] move(int[] board, String action) {   
         int blank = this.findBlank(board);
-        //System.out.println(blank);
-        boolean[] possible = this.canMove(board);
-        //board[0]= 16;
-        //this.print(board);
-        System.out.println("What is your next move move up(u), move right(r), move down(d), or move left(l):");
-        Scanner input = new Scanner(System.in);
-        String in = input.next();
-        int index = moves.indexOf(in);
-        System.out.println(possible[index]);
-    
-        if(possible[index]) {
-            switch (in) {
-                case "u": {
-                    board[blank] = board[blank - 4];
-                    board[blank - 4] = 16; 
-                    break;
-                }
-                case "r": {
-                    board[blank] = board[blank + 1];
-                    board[blank + 1] = 16; 
-                    break;
-                }
-                case "d": {
-                    board[blank] = board[blank + 4];
-                    board[blank + 4] = 16; 
-                    break;
-                }
+        //Scanner input = new Scanner(System.in);
+        //String in = input.next();   
+        if (action.equals("w") && this.moveUp(board)) {
+            System.out.println("up");
+            board[blank] = board[blank - 4];
+            board[blank - 4] = 16;
+        } else if (action.equals("d") && this.moveRight(board)) {
+            System.out.println("right");
+            board[blank] = board[blank + 1];
+            board[blank + 1] = 16;
+        } else if (action.equals("s") && this.moveDown(board)) {
+            System.out.println("down");
+            board[blank] = board[blank + 4];
+            board[blank + 4] = 16; 
+        } else if (action.equals("a") && this.moveLeft(board)) {
+            System.out.println("left");
+            board[blank] = board[blank - 1];
+            board[blank - 1] = 16; 
+        } else {
+            System.out.println("Not a valid move");
+        }
 
-                case "l": {
-                    board[blank] = board[blank - 1];
-                    board[blank - 1] = 16;   
-                    break;
-                }
-            } 
 
-        } 
 
-        input.close();
+        //input.close();
         return board;
     }
 
