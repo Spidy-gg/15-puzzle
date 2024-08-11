@@ -1,4 +1,4 @@
-import java.lang.Math;
+//import java.lang.Math;
 import java.util.*;
 public class puzzle {
     //finds the blank and counts how many steps it takes to get to the last position and returns if it is even or odd
@@ -106,19 +106,19 @@ public class puzzle {
         //Scanner input = new Scanner(System.in);
         //String in = input.next();   
         if (action.equals("w") && this.moveUp(board)) {
-            System.out.println("up");
+            //System.out.println("up");
             board[blank] = board[blank - 4];
             board[blank - 4] = 16;
         } else if (action.equals("d") && this.moveRight(board)) {
-            System.out.println("right");
+            //System.out.println("right");
             board[blank] = board[blank + 1];
             board[blank + 1] = 16;
         } else if (action.equals("s") && this.moveDown(board)) {
-            System.out.println("down");
+            //System.out.println("down");
             board[blank] = board[blank + 4];
             board[blank + 4] = 16; 
         } else if (action.equals("a") && this.moveLeft(board)) {
-            System.out.println("left");
+            //System.out.println("left");
             board[blank] = board[blank - 1];
             board[blank - 1] = 16; 
         } else {
@@ -129,6 +129,15 @@ public class puzzle {
 
         //input.close();
         return board;
+    }
+
+    public boolean solved(int[] board) {
+        for(int i = 15; i >= 0; i--) {
+            if(board[i] != i++) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }
