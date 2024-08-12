@@ -7,10 +7,10 @@ public class Main{
 
 		int[] board = p.create();
 		p.print(board);
+		System.out.println("What is your next move move up(w), move right(d), move down(s), or move left(a):");
 
 
-		for(int i = 0; i < 99; i++) {
-			System.out.println("What is your next move move up(w), move right(d), move down(s), or move left(a):");
+		while(!p.solved(board)) {
 			String move = sc.next();
 			board = p.move(board, move);
 			p.print(board);
