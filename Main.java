@@ -1,6 +1,7 @@
 import java.util.Scanner;
 public class Main{
 	public static void main(String[] args){
+		/*
 		puzzle p = new puzzle();
 		Scanner sc = new Scanner(System.in);
 
@@ -16,7 +17,9 @@ public class Main{
 			p.print(board);
 		}
 
-		sc.close();
+		sc.close(); */
+
+		Gui temp = new Gui();
 
 		
 		
